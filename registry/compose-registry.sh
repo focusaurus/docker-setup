@@ -7,11 +7,7 @@ set -o posix      # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 
-cd /tmp
-if [[ -e ./distribution ]]; then
-  rm -rf ./distribution
-fi
-
+cd "$(mktemp -d)"
 git clone https://github.com/docker/distribution.git
 cd distribution
 git checkout 1f015478a035c68982843754d1442baad76f3cf0
@@ -87,16 +83,15 @@ server {
 
     # The docker client expects this header from the /v2/ endpoint.
     add_header 'Docker-Distribution-Api-Version:' 'registry/2.0' always;
-    include               docker-registry-v2.conf;
+    include docker-registry-v2.conf;
   }
 
   location / {
-    include               docker-registry.conf;
+    include docker-registry.conf;
   }
 }
 EOF
 
 cd ..
 docker pull registry:0.9.1
-docker-compose build
 docker-compose up -d

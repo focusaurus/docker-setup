@@ -7,7 +7,19 @@ set -o posix      # more strict failures in subshells
 
 IFS="$(printf "\n\t")"
 destination=/usr/local/bin/docker-compose
+
+if [[ -x "${destination}" ]]; then
+  version=$("${destination}" --version)
+  if [[ $? -eq 0 ]]; then
+    echo "✓ docker-compose version ${version} is already installed."
+    exit 0
+  fi
+fi
+echo "installing docker-compose…"
 curl \
-  --write-out "${destination}" \
+  --silent \
+  --fail \
+  --location \
+  --output "${destination}" \
   "https://github.com/docker/compose/releases/download/1.1.0/docker-compose-$(uname  -s)-$(uname -m)"
 chmod +x "${destination}"

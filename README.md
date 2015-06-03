@@ -13,11 +13,17 @@ This project is essentially a scripting of the [docker installation instructions
 
 1. Get yourself an Ubuntu server, ssh access and sudo permissions
 1. Log into your target server and become root
-1. Clone this repo to the target server by copying the contents of `git.sh` and paste into a root shell on the target server.
+1. Clone this repo to the target server by copying the contents of [git.sh](./git.sh) and paste into a root shell on the target server.
 1. Run ./nginx.sh <hostname>
 
-## How to install docker
+## How to Install docker
 
 1. become root
-1. cd into the directory where these scripts are checked out
-1. run `./docker/install-docker.sh`
+1. cd into the directory where these scripts are cloned
+1. run `./install-docker.sh`
+
+## How to Install docker-registry
+
+1. become root
+1. cd in the directory where these scripts are cloned
+1. run `./install-docker-registry.sh`
