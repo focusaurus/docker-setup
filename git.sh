@@ -1,4 +1,4 @@
 apt-get --quiet --assume-yes update
-apt-get --quiet --assume-yes install git-core
+apt-get --quiet --assume-yes install git-core openssl curl
 cd /tmp
-git clone ssh://git.peterlyons.com/home/plyons/projects/docker-registry-setup.git
+git clone https://github.com/focusaurus/docker-registry-setup.git
